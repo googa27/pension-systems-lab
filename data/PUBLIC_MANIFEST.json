@@ -1,0 +1,98 @@
+{
+  "files": [
+    {
+      "bytes": 713,
+      "description": "National Censo 2024 enumerated population by five-year age group and sex.",
+      "licensing_note": "Source was publicly accessible, but redistribution/use license has not been independently verified.",
+      "licensing_status": "not_verified",
+      "path": "data/processed/censo2024_chile_population_by_age_sex.csv",
+      "published_copy_policy": "curated_national_public_aggregate_csv_only",
+      "registry_key": "cl_ine_censo_2024_age_sex",
+      "retrieval_date": null,
+      "retrieval_date_note": "Unknown/not recorded in recovered candidate; not backfilled or inferred.",
+      "row_count": 18,
+      "sha256": "4cc6982faf812233d871e237f696f5d7fb33879201e91ac8ad6153bc88618c03",
+      "source_family": "Instituto Nacional de Estadísticas (INE), Censo 2024 results portal",
+      "source_urls": [
+        "https://censo2024.ine.gob.cl/resultados/"
+      ]
+    },
+    {
+      "bytes": 360,
+      "description": "April 2026 births by maternal-age group and newborn sex.",
+      "licensing_note": "Source was publicly accessible, but redistribution/use license has not been independently verified.",
+      "licensing_status": "not_verified",
+      "path": "data/processed/ine_april_2026_births_by_maternal_age.csv",
+      "published_copy_policy": "curated_national_public_aggregate_csv_only",
+      "registry_key": "cl_ine_vital_april_2026_births_age",
+      "retrieval_date": null,
+      "retrieval_date_note": "Unknown/not recorded in recovered candidate; not backfilled or inferred.",
+      "row_count": 9,
+      "sha256": "118a78f890a7bfdf56c42f2124f64f6fcb139b02b8a1a6d927c1f60be7177efe",
+      "source_family": "INE provisional vital statistics",
+      "source_urls": [
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/07/15/matrimonios-y-acuerdos-de-uni%C3%B3n-civil-aumentaron-interanualmente-en-abril-de-2026",
+        "https://www.ine.gob.cl/estadisticas-por-tema/demografia-y-poblacion/estadisticas-vitales"
+      ]
+    },
+    {
+      "bytes": 742,
+      "description": "April 2026 deaths by age group and sex.",
+      "licensing_note": "Source was publicly accessible, but redistribution/use license has not been independently verified.",
+      "licensing_status": "not_verified",
+      "path": "data/processed/ine_april_2026_deaths_by_age_sex.csv",
+      "published_copy_policy": "curated_national_public_aggregate_csv_only",
+      "registry_key": "cl_ine_vital_april_2026_deaths_age_sex",
+      "retrieval_date": null,
+      "retrieval_date_note": "Unknown/not recorded in recovered candidate; not backfilled or inferred.",
+      "row_count": 22,
+      "sha256": "e88686f038953e5ccc6da6ac18841a8f6f08daf5a282f248de0a44c2635ef01c",
+      "source_family": "INE provisional vital statistics",
+      "source_urls": [
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/07/15/matrimonios-y-acuerdos-de-uni%C3%B3n-civil-aumentaron-interanualmente-en-abril-de-2026",
+        "https://www.ine.gob.cl/estadisticas-por-tema/demografia-y-poblacion/estadisticas-vitales"
+      ]
+    },
+    {
+      "bytes": 2956,
+      "description": "Monthly total births and deaths from January 2025 through April 2026; each row carries its public INE press-release URL.",
+      "licensing_note": "Source was publicly accessible, but redistribution/use license has not been independently verified.",
+      "licensing_status": "not_verified",
+      "path": "data/processed/ine_monthly_births_deaths_2025_2026.csv",
+      "published_copy_policy": "curated_national_public_aggregate_csv_only",
+      "registry_key": "cl_ine_monthly_births_deaths_2025_2026",
+      "retrieval_date": null,
+      "retrieval_date_note": "Unknown/not recorded in recovered candidate; not backfilled or inferred.",
+      "row_count": 16,
+      "sha256": "2a17ed2c559cfcade3853cf9e7342d95ff90fa9e5551a8b4fea98fe0242e8642",
+      "source_family": "INE monthly vital-statistics press releases",
+      "source_urls": [
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2025/04/15/nacimientos-y-matrimonios-disminuyeron-interanualmente-en-enero-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2025/05/15/matrimonios-disminuyeron-interanualmente-en-febrero-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2025/06/16/acuerdos-de-uni%C3%B3n-civil-aumentaron-24-3-interanualmente-en-marzo-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2025/07/15/nacimientos-y-matrimonios-disminuyeron-interanualmente-en-abril-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2025/08/14/nacimientos-matrimonios-y-defunciones-disminuyeron-interanualmente-en-mayo-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2025/09/15/nacimientos-y-matrimonios-disminuyeron-en-junio-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2025/10/15/defunciones-matrimonios-y-auc-aumentaron-interanualmente-en-julio-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2025/11/14/acuerdos-de-uni%C3%B3n-civil-aumentaron-interanualmente-en-agosto-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2025/12/15/matrimonios-acuerdos-de-uni%C3%B3n-civil-y-defunciones-aumentaron-interanualmente-en-septiembre-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/01/15/matrimonios-acuerdos-de-uni%C3%B3N-civil-y-defunciones-aumentaron-interanualmente-en-octubre-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/02/16/matrimonios-auc-y-defunciones-aumentaron-interanualmente-en-noviembre-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/03/16/nacimientos-aumentaron-1-interanualmente-en-diciembre-de-2025",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/04/15/matrimonios-acuerdos-de-uni%C3%B3n-civil-y-defunciones-aumentaron-interanualmente-en-enero-de-2026",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/05/15/matrimonios-y-acuerdos-de-uni%C3%B3n-civil-aumentaron-interanualmente-en-febrero-de-2026",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/06/15/nacimientos-aumentaron-3-5-interanualmente-en-marzo-de-2026",
+        "https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/07/15/matrimonios-y-acuerdos-de-uni%C3%B3n-civil-aumentaron-interanualmente-en-abril-de-2026"
+      ]
+    }
+  ],
+  "license_caution": "Public access is not treated as a verified redistribution or reuse license.",
+  "licensing_status": "not_verified",
+  "licensing_verified": false,
+  "manifest_name": "pension-systems-lab public curated data manifest",
+  "private_or_person_level_data_included": false,
+  "raw_workbooks_or_legacy_notebook_outputs_included": false,
+  "retrieval_dates_verified": false,
+  "schema_version": 1,
+  "scope": "curated public national aggregate CSVs bundled under data/processed/"
+}

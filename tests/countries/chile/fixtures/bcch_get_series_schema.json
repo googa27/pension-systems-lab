@@ -1,0 +1,27 @@
+{
+  "Codigo": 0,
+  "Descripcion": "Success",
+  "Series": {
+    "descripEsp": "Tasa de interés de los bonos en UF a 10 años (porcentaje)",
+    "descripIng": "10-year UF-indexed bond interest rate (percentage)",
+    "seriesId": "F022.BUF.TIS.AN10.UF.Z.D",
+    "Obs": [
+      {
+        "indexDateString": "01-01-2026",
+        "value": "4.5",
+        "statusCode": "OK"
+      },
+      {
+        "indexDateString": "02-01-2026",
+        "value": "",
+        "statusCode": "ND"
+      },
+      {
+        "indexDateString": "03-01-2026",
+        "value": "999.0",
+        "statusCode": "ND"
+      }
+    ]
+  },
+  "SeriesInfos": []
+}

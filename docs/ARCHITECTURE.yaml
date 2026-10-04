@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "publication_file_exceptions": {
+    "uv.lock": {
+      "max_kib": 1024,
+      "owner": "publication-maintainers",
+      "reason": "Generated cross-version/platform dependency lock, including optional numerical backends; preserving reproducible hashes outweighs the generic 500 KiB hook limit.",
+      "risk": "Large lock diffs can hide dependency or index changes; this is not a secret-scan exclusion.",
+      "refactoring_trigger": "Review dependency groups before exceeding 1 MiB; the size fitness test remains fail-closed.",
+      "verification": "Locked installation plus publication guard and redacted Gitleaks still include uv.lock."
+    }
+  },
+  "package": "chile_demographic_pde",
+  "status": "legacy-publication-guardrails",
+  "principles": [
+    "No private or sibling-repository imports in public CLI integrations.",
+    "Legacy oversized modules are documented as no-growth exceptions, not precedent for new code.",
+    "Curated public CSVs are the only bundled input data in this public copy.",
+    "Research outputs are prototypes and are not official, legal, actuarial, or regulatory projections."
+  ],
+  "max_source_lines_without_exception": 500,
+  "max_internal_fanout_without_exception": 7,
+  "legacy_size_exceptions": {
+    "src/chile_demographic_pde/countries/chile/bcch_registry.py": {
+      "max_lines": 632,
+      "owner": "publication-maintainers",
+      "risk": "Large official BCCh registry contract combines source-review schema and validation snapshots.",
+      "trigger": "Split when adding a second registry version or when touching more than validation constants.",
+      "evidence": "Measured at publication hardening with AST/line scanner; existing tested adapter contract retained."
+    },
+    "src/chile_demographic_pde/countries/chile/curated.py": {
+      "max_lines": 558,
+      "owner": "publication-maintainers",
+      "risk": "Curated Chile-source contracts mix data envelopes and provenance fixtures.",
+      "trigger": "Split before adding another source family or new non-Chile ingestion.",
+      "evidence": "Legacy reviewed contracts retained to avoid replacing serious adapters with stubs."
+    },
+    "src/chile_demographic_pde/countries/chile/deis.py": {
+      "max_lines": 1552,
+      "owner": "publication-maintainers",
+      "risk": "DEIS deaths adapter contains fixed workbook/CSV contracts and aggregate diagnostics.",
+      "trigger": "Split parser, registry, and diagnostics before adding new DEIS vintages.",
+      "evidence": "Automated tests cover official archive and adapter behavior; no-growth limit freezes current size."
+    },
+    "src/chile_demographic_pde/countries/chile/deis_births.py": {
+      "max_lines": 1372,
+      "owner": "publication-maintainers",
+      "risk": "DEIS births adapter contains fixed source contracts and envelope assembly.",
+      "trigger": "Split parser and envelope assembly before broadening beyond current public contracts.",
+      "evidence": "Existing tests retained; limit equals measured recovered module size."
+    },
+    "src/chile_demographic_pde/countries/chile/market.py": {
+      "max_lines": 776,
+      "owner": "publication-maintainers",
+      "risk": "Market adapter combines BCCh response normalization and finance-domain envelopes.",
+      "trigger": "Split API response parsing from envelope assembly before adding live API clients.",
+      "evidence": "Legacy public finance adapter retained with no-growth cap."
+    },
+    "src/chile_demographic_pde/countries/chile/official_finance_registry.py": {
+      "max_lines": 510,
+      "owner": "publication-maintainers",
+      "risk": "Reviewed finance registry constants are close to the threshold and should not accrete logic.",
+      "trigger": "Move registry data to a versioned resource file if another finance source is added.",
+      "evidence": "Measured current registry size; tests assert official finance registry contract."
+    },
+    "src/chile_demographic_pde/countries/chile/pensions.py": {
+      "max_lines": 1860,
+      "owner": "publication-maintainers",
+      "risk": "CMF TM-2020 regulatory mortality adapter is large and legally sensitive if confused with projections.",
+      "trigger": "Split workbook contract, parser, validation, and construction diagnostics before adding new pension tables.",
+      "evidence": "Existing tests verify adapter and construction diagnostics; documentation states regulatory inputs are not projected probabilities."
+    },
+    "src/chile_demographic_pde/countries/chile/vital_statistics.py": {
+      "max_lines": 662,
+      "owner": "publication-maintainers",
+      "risk": "Vital-statistics adapter combines release contracts and envelope assembly.",
+      "trigger": "Split before adding region/cause/parity extensions.",
+      "evidence": "Legacy official vital adapter retained under no-growth cap."
+    },
+    "src/chile_demographic_pde/data/domain_schemas.py": {
+      "max_lines": 1752,
+      "owner": "publication-maintainers",
+      "risk": "Central schema registry has many domain contracts; changes affect all adapters.",
+      "trigger": "Split by domain before adding international source schemas.",
+      "evidence": "Current public tests exercise finance and nonfinance domain schemas."
+    },
+    "src/chile_demographic_pde/data/envelope.py": {
+      "max_lines": 803,
+      "owner": "publication-maintainers",
+      "risk": "Envelope identity/provenance assembly is central and high fan-in.",
+      "trigger": "Split validators from envelope builders before adding new envelope versions.",
+      "evidence": "No-growth limit freezes recovered tested implementation."
+    },
+    "src/chile_demographic_pde/data/exposure.py": {
+      "max_lines": 502,
+      "owner": "publication-maintainers",
+      "risk": "Exposure semantics are barely over threshold and numerically sensitive.",
+      "trigger": "Split helper validation if any new exposure transformations are added.",
+      "evidence": "Line-count exception is exact and minimal."
+    },
+    "src/chile_demographic_pde/data/identity.py": {
+      "max_lines": 513,
+      "owner": "publication-maintainers",
+      "risk": "Identity registry consistency is publication-critical.",
+      "trigger": "Split registry storage from validation on new identity schemes.",
+      "evidence": "Golden identity tests retained."
+    },
+    "src/chile_demographic_pde/data/model_input.py": {
+      "max_lines": 591,
+      "owner": "publication-maintainers",
+      "risk": "Model-input assembly bridges validated observations and modeling surfaces.",
+      "trigger": "Split per source family before international model inputs are ingested.",
+      "evidence": "No-growth cap reflects recovered source size."
+    },
+    "src/chile_demographic_pde/data/reconstruction.py": {
+      "max_lines": 565,
+      "owner": "publication-maintainers",
+      "risk": "Censo exact-bin reconstruction is numerical and limitation-heavy.",
+      "trigger": "Split diagnostics from optimizer before adding new tail models.",
+      "evidence": "Tests cover exact-bin preservation and grid diagnostics."
+    }
+  },
+  "legacy_fanout_exceptions": {
+    "src/chile_demographic_pde/countries/chile/deis.py": {
+      "max_internal_fanout": 8,
+      "owner": "publication-maintainers",
+      "risk": "Adapter touches core errors/provenance plus envelope/schema/release services.",
+      "trigger": "Any ninth internal dependency requires split before merge.",
+      "evidence": "Measured publication AST fanout."
+    },
+    "src/chile_demographic_pde/countries/chile/deis_births.py": {
+      "max_internal_fanout": 8,
+      "owner": "publication-maintainers",
+      "risk": "Births adapter mirrors deaths adapter dependency shape.",
+      "trigger": "Any ninth internal dependency requires split before merge.",
+      "evidence": "Measured publication AST fanout."
+    },
+    "src/chile_demographic_pde/countries/chile/market.py": {
+      "max_internal_fanout": 8,
+      "owner": "publication-maintainers",
+      "risk": "Market adapter bridges country registry and generic finance schemas.",
+      "trigger": "Any ninth internal dependency requires split before merge.",
+      "evidence": "Measured publication AST fanout."
+    },
+    "src/chile_demographic_pde/countries/chile/pensions.py": {
+      "max_internal_fanout": 8,
+      "owner": "publication-maintainers",
+      "risk": "Pension mortality adapter bridges country registry and generic regulatory schemas.",
+      "trigger": "Any ninth internal dependency requires split before merge.",
+      "evidence": "Measured publication AST fanout."
+    },
+    "src/chile_demographic_pde/pipeline.py": {
+      "max_internal_fanout": 8,
+      "owner": "model-maintainers",
+      "risk": "Reference pipeline is the only root orchestrator and should not become a catch-all API.",
+      "trigger": "Any ninth internal dependency or non-reference workflow requires a separate orchestrator.",
+      "evidence": "Source-root fanout measured and capped for legacy compatibility."
+    }
+  },
+  "import_boundaries": {
+    "allowed_boundary_exceptions": {
+      "chile_demographic_pde.core.provenance": {
+        "imports": [
+          "chile_demographic_pde.data.roles"
+        ],
+        "owner": "publication-maintainers",
+        "risk": "Legacy provenance metadata references the observation-domain enum before the layer boundary was formalized.",
+        "trigger": "Remove this exception when provenance roles move into core or a neutral schema module.",
+        "evidence": "Existing recovered implementation and tests rely on this single core-to-data import."
+      }
+    },
+    "forbidden_prefixes": {
+      "chile_demographic_pde.core": [
+        "chile_demographic_pde.data",
+        "chile_demographic_pde.countries",
+        "chile_demographic_pde.pde",
+        "chile_demographic_pde.rates",
+        "chile_demographic_pde.dynamics",
+        "chile_demographic_pde.calibration",
+        "chile_demographic_pde.diagnostics",
+        "chile_demographic_pde.pipeline",
+        "chile_demographic_pde.cli"
+      ],
+      "chile_demographic_pde.data": [
+        "chile_demographic_pde.countries",
+        "chile_demographic_pde.pde",
+        "chile_demographic_pde.rates",
+        "chile_demographic_pde.dynamics",
+        "chile_demographic_pde.calibration",
+        "chile_demographic_pde.diagnostics",
+        "chile_demographic_pde.pipeline",
+        "chile_demographic_pde.cli"
+      ],
+      "chile_demographic_pde.pde": [
+        "chile_demographic_pde.countries",
+        "chile_demographic_pde.data",
+        "chile_demographic_pde.rates",
+        "chile_demographic_pde.dynamics",
+        "chile_demographic_pde.calibration",
+        "chile_demographic_pde.diagnostics",
+        "chile_demographic_pde.pipeline",
+        "chile_demographic_pde.cli"
+      ]
+    }
+  },
+  "directory_file_count_limit": 10,
+  "directory_file_count_exceptions": {
+    "src/chile_demographic_pde/countries/chile": {
+      "max_files": 15,
+      "owner": "publication-maintainers",
+      "risk": "Chile adapters include multiple official-source contracts retained for compatibility.",
+      "trigger": "Split registry/parser families before adding a sixteenth Python file.",
+      "evidence": "Measured at publication baseline; no-growth cap equals current file count."
+    },
+    "src/chile_demographic_pde/data": {
+      "max_files": 15,
+      "owner": "publication-maintainers",
+      "risk": "Data semantics, envelope, identity, and reconstruction contracts are colocated legacy modules.",
+      "trigger": "Split data contract subpackages before adding a sixteenth Python file.",
+      "evidence": "Measured at publication baseline; no-growth cap equals current file count."
+    }
+  },
+  "publication_contract": {
+    "public_repositories": [
+      "https://github.com/googa27/pension-systems-lab",
+      "https://github.com/googa27/afp-operations"
+    ],
+    "hero_asset": "docs/assets/pension_systems_lab_hero.png",
+    "private_boundary": [
+      "no credentials",
+      "no raw workbooks or PDFs",
+      "no private integration details",
+      "no agent histories"
+    ],
+    "chile_regulation_sources": [
+      "https://www.bcn.cl/leychile/navegar?idNorma=7147",
+      "https://www.bcn.cl/leychile/navegar?idNorma=1212060",
+      "https://www.spensiones.cl/portal/institucional/594/w3-article-16483.html"
+    ]
+  },
+  "quality_gates": [],
+  "interfaces": {
+    "agent": [
+      "AGENTS.md",
+      "JSON CLI capabilities",
+      "publication guard"
+    ],
+    "human": [
+      "typed importable API",
+      "deterministic notebook/script examples"
+    ],
+    "extension_points": [
+      "public data provider",
+      "dated policy provider",
+      "numerical backend",
+      "artifact renderer"
+    ]
+  },
+  "data_architecture": {
+    "flow": [
+      "source registry",
+      "immutable acquired input",
+      "canonical contracts",
+      "features/model",
+      "governed outputs",
+      "read-only rendering"
+    ],
+    "required": [
+      "units",
+      "grain",
+      "classification",
+      "lineage",
+      "quality",
+      "vintage",
+      "content hash",
+      "license status"
+    ],
+    "private": "external least-privileged adapters; no public export"
+  },
+  "source_entry_limit": 10,
+  "source_entry_exceptions": {
+    "src/chile_demographic_pde": {
+      "max_entries": 12,
+      "owner": "maintainers",
+      "reason": "Recovered compatibility-preserving baseline; new runtime entries require package decomposition.",
+      "risk": "Wide legacy responsibility surface",
+      "refactoring_trigger": "Before adding any runtime entry",
+      "evidence": "Measured actual immediate runtime modules plus Python package directories, excluding __init__.py and metadata"
+    },
+    "src/chile_demographic_pde/data": {
+      "max_entries": 14,
+      "owner": "maintainers",
+      "reason": "Recovered compatibility-preserving baseline; new runtime entries require package decomposition.",
+      "risk": "Wide legacy responsibility surface",
+      "refactoring_trigger": "Before adding any runtime entry",
+      "evidence": "Measured actual immediate runtime modules plus Python package directories, excluding __init__.py and metadata"
+    },
+    "src/chile_demographic_pde/countries/chile": {
+      "max_entries": 14,
+      "owner": "maintainers",
+      "reason": "Recovered compatibility-preserving baseline; new runtime entries require package decomposition.",
+      "risk": "Wide legacy responsibility surface",
+      "refactoring_trigger": "Before adding any runtime entry",
+      "evidence": "Measured actual immediate runtime modules plus Python package directories, excluding __init__.py and metadata"
+    }
+  }
+}

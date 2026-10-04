@@ -1,0 +1,58 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  quality:
+    name: quality / python-${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.12', '3.13']
+    env:
+      JAX_PLATFORM_NAME: cpu
+      XLA_FLAGS: --xla_force_host_platform_device_count=1
+      OMP_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+        with:
+          enable-cache: true
+      - name: Locked installation
+        run: uv sync --locked --all-extras --dev
+      - name: Reproduce README visual
+        run: uv run --no-sync python scripts/render_readme_assets.py
+      - name: Tests
+        run: uv run --no-sync pytest
+      - name: Lint
+        run: uv run --no-sync ruff check .
+      - name: Format
+        run: uv run --no-sync ruff format --check .
+      - name: Types
+        run: uv run --no-sync mypy
+      - name: Build
+        run: uv build
+      - name: Publication guard
+        run: uv run --no-sync python scripts/publication_guard.py --mode git
+      - name: Checksum-pinned redacted secret scan
+        run: |
+          set -euo pipefail
+          curl -fSL --retry 3 --max-time 60 -o /tmp/gitleaks.tar.gz https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  /tmp/gitleaks.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/gitleaks.tar.gz -C /tmp gitleaks
+          mkdir -p /tmp/public-scan
+          git archive HEAD | tar -x -C /tmp/public-scan
+          /tmp/gitleaks dir --no-banner --redact --exit-code 1 /tmp/public-scan
