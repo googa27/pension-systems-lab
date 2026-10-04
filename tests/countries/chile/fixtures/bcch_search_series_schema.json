@@ -1,0 +1,32 @@
+{
+  "Codigo": 0,
+  "Descripcion": "Success",
+  "Series": {
+    "descripEsp": null,
+    "descripIng": null,
+    "seriesId": null,
+    "Obs": null
+  },
+  "SeriesInfos": [
+    {
+      "seriesId": "F022.BUF.TIS.AN10.UF.Z.D",
+      "frequencyCode": "DAILY",
+      "spanishTitle": "Tasa de interés de los bonos en UF a 10 años (porcentaje)",
+      "englishTitle": "10-year UF-indexed bond interest rate (percentage)",
+      "firstObservation": "02-01-2002",
+      "lastObservation": "03-01-2026",
+      "updatedAt": "04-01-2026",
+      "createdAt": "15-03-2012"
+    },
+    {
+      "seriesId": "F000.UNRELATED.D",
+      "frequencyCode": "DAILY",
+      "spanishTitle": "Serie ajena",
+      "englishTitle": "Unrelated series",
+      "firstObservation": "01-01-2020",
+      "lastObservation": "01-01-2020",
+      "updatedAt": "02-01-2020",
+      "createdAt": "01-01-2020"
+    }
+  ]
+}

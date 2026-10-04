@@ -1,0 +1,12 @@
+# Gitleaks generic-api-key false positives: these are exact public dataset IDs,
+# not credential values. No files, folders, or credential-rule classes are ignored.
+# Definitions live in the official source registries and PUBLIC_MANIFEST.json.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Exact non-secret official dataset identifiers only"
+regexTarget = "secret"
+regexes = [
+  '''^(cmf_tm2020_historical|cmf_tm2020_historical_xlsx|cmf_tm2020_construction_zip|cmf_tm2020_construction_diagnostic|deis_deaths_preliminary_20260707|deis_deaths_final_1990_2023|cl_ine_censo_2024_age_sex|cl_ine_vital_april_2026_births_age|cl_ine_vital_april_2026_deaths_age_sex|cl_ine_monthly_births_deaths_2025_2026)$''',
+]

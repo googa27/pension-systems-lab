@@ -1,0 +1,6 @@
+# Curated CSV bytes are content-addressed; do not rewrite their line endings.
+*.csv -text
+*.png -text
+*.py text eol=lf
+*.md text eol=lf
+*.ipynb text eol=lf
