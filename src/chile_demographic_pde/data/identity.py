@@ -151,7 +151,7 @@ class CanonicalIdentityRecord:
             raise DataContractError("Canonical identity payloads must be immutable bytes.")
 
 
-@dataclass(frozen=True, slots=True, init=False, weakref_slot=True)
+@dataclass(frozen=True, init=False)
 class IdentityRegistrySnapshot:
     _by_value: Mapping[str, CanonicalIdentityRecord] = field(
         repr=False,

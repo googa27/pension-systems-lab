@@ -10,6 +10,7 @@
       "verification": "Locked installation plus publication guard and redacted Gitleaks still include uv.lock."
     }
   },
+  "compatibility_decisions": [{"component": "IdentityRegistrySnapshot", "library": "stdlib dataclasses", "decision": "Frozen non-slotted snapshot; slotted per-record values; immutable mapping and identity seals retained", "evidence": "docs/ADR/0001-snapshot-interpreter-portability.md", "fitness_test": "tests/unit/test_snapshot_portability.py"}],
   "package": "chile_demographic_pde",
   "status": "legacy-publication-guardrails",
   "principles": [
