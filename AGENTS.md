@@ -4,7 +4,7 @@ Public research workbench for Chilean/international pension-system questions, re
 
 ## Canonical docs
 - `docs/ARCHITECTURE.yaml`, `docs/ARCHITECTURE.md`: enforced architecture and legacy no-growth exceptions.
-- `docs/THEORY.md`, `docs/LIMITATIONS.md`: equations, stabilization/clipping and inference limitations.
+- `docs/MATHEMATICS.md`, `docs/LIMITATIONS.md`: equations, stabilization/clipping and inference limitations.
 - `data/PUBLIC_MANIFEST.json`, `docs/SOURCE_REGISTRY.md`, `docs/DATA_GOVERNANCE.md`: aggregate fixtures, lineage, licensing/unknown vintage notes.
 - `docs/ECOSYSTEM.md`, `docs/ROADMAP.md`: public dependency seams and international extension roadmap.
 
@@ -22,7 +22,7 @@ uv build
 uv run python scripts/publication_guard.py --mode git
 python scripts/scan_publication.py
 ```
-The full suite includes actual MCMC and notebook execution; allow several minutes. Optional AFP integration: install the public `afp-operations` repository/package, then `uv run --no-sync pension-lab pension-demo`. No sibling source imports or path hacks.
+The full suite includes a short NumPyro SVI fit and notebook source/publication checks; it does not execute NUTS or the notebook. Allow several minutes. Optional AFP integration: install the public `afp-operations` repository/package, then `uv run --no-sync pension-lab pension-demo`. No sibling source imports or path hacks.
 
 ## Architecture and extension workflow
 - Domain semantic contracts own units/grain/classification; IO belongs behind acquisition adapters; demographic calibration and PDE backends remain distinct; notebooks/report builders are consumers of public contracts.
