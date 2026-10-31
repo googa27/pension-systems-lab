@@ -7,6 +7,7 @@
 - **Immutable configuration/results**: Pydantic configuration and frozen dataclasses prevent hidden mutation.
 - **Explicit observation layer**: grouped data never masquerade as point observations.
 - **Testability**: the FEM solver, integrator, estimators, coupled pipeline, Bayesian layer, forecasts, and interventions each have direct tests.
+- **Maintained numerical backends**: scikit-fem owns element assembly and nonzero Dirichlet elimination (`asm`, `condense`, `solve`; [official reference](https://scikit-fem.readthedocs.io/en/stable/api.html#skfem.utils.condense)). NumPyro owns SVI/NUTS inference. Array-based observation integrals, deterministic initialization, and posterior summaries are distinct from those backends. The FEM boundary rejects nonfinite configuration and step inputs before assembly.
 - **Reproducibility**: curated public CSVs, `uv.lock`, a cleared notebook, and source URLs are bundled. Raw Excel/workbook redistribution is unresolved and is intentionally excluded from this public copy.
 
 ## Canonical semantic algebra

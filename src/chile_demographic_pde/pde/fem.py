@@ -5,8 +5,7 @@ from __future__ import annotations
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
 from scipy.sparse import csc_matrix
-from scipy.sparse.linalg import spsolve
-from skfem import Basis, BilinearForm, ElementLineP1, MeshLine, asm
+from skfem import Basis, BilinearForm, ElementLineP1, MeshLine, asm, condense, solve
 from skfem.helpers import dot, grad
 
 FloatArray = NDArray[np.float64]
@@ -48,6 +47,8 @@ class AgeTransportFEM:
         nodes: int = 211,
         artificial_diffusion: float = 0.015,
     ) -> None:
+        if not np.all(np.isfinite([maximum_age, artificial_diffusion])):
+            raise ValueError("FEM configuration must be finite")
         if maximum_age <= 0.0 or nodes < 3 or artificial_diffusion < 0.0:
             raise ValueError("Invalid FEM configuration")
         self.mesh = MeshLine(np.linspace(0.0, maximum_age, nodes, dtype=float))
@@ -70,22 +71,27 @@ class AgeTransportFEM:
         hazard = np.asarray(mortality, dtype=float)
         if population.shape != self.age.shape or hazard.shape != self.age.shape:
             raise ValueError("state and mortality must match the FEM age grid")
+        source_vector = np.broadcast_to(np.asarray(source, dtype=float), self.age.shape)
+        if not (
+            np.all(np.isfinite(population))
+            and np.all(np.isfinite(hazard))
+            and np.all(np.isfinite(source_vector))
+            and np.all(np.isfinite([inflow, dt]))
+        ):
+            raise ValueError("state, mortality, source, inflow, and dt must be finite")
         if np.any(hazard < 0.0) or inflow < 0.0 or dt <= 0.0:
             raise ValueError("mortality and inflow must be nonnegative; dt must be positive")
-        source_vector = np.broadcast_to(np.asarray(source, dtype=float), self.age.shape)
         reaction = csc_matrix(asm(_reaction, self.basis, mu=self.basis.interpolate(hazard)))
         operator = self._mass + dt * (
             self._advection + reaction + self.artificial_diffusion * self._diffusion
         )
         rhs = np.asarray(self._mass @ population + dt * (self._mass @ source_vector), dtype=float)
 
-        # Strong inflow boundary with a symmetric elimination of the column.
-        boundary = 0
-        rhs -= operator[:, boundary].toarray().ravel() * inflow
-        mutable = operator.tolil(copy=True)
-        mutable[:, boundary] = 0.0
-        mutable[boundary, :] = 0.0
-        mutable[boundary, boundary] = 1.0
-        rhs[boundary] = inflow
-        solution = np.asarray(spsolve(mutable.tocsc(), rhs), dtype=float)
+        # Delegate nonzero Dirichlet elimination and expansion to scikit-fem.
+        boundary_values = np.zeros_like(population)
+        boundary_values[0] = inflow
+        inflow_dofs = self.basis.get_dofs(lambda x: x[0] == 0.0)
+        solution = np.asarray(
+            solve(*condense(operator, rhs, x=boundary_values, D=inflow_dofs)), dtype=float
+        )
         return np.maximum(solution, 0.0)
